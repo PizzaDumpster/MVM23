@@ -113,10 +113,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if(joystick.Horizontal > 0.2f)
             {
-                movement.x = 1;
+                movement.x = -1;
             }else if(joystick.Horizontal < -0.2f)
             {
-                movement.x = -1;
+                movement.x = 1;
             }
             else
             {

@@ -16,7 +16,7 @@ public class FallThrough : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKey(KeyCode.S) || (Input.GetAxisRaw("Vertical") > 0) || joystick.Vertical < 0)
+            if (Input.GetKey(KeyCode.S) || (Input.GetAxisRaw("Vertical") > 0) || joystick.Vertical > 0)
             {
                 StartCoroutine(DropThrough());
             }
@@ -26,7 +26,7 @@ public class FallThrough : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKey(KeyCode.S) || (Input.GetAxisRaw("Vertical") > 0) || joystick.Vertical < 0)
+            if (Input.GetKey(KeyCode.S) || (Input.GetAxisRaw("Vertical") > 0) || joystick.Vertical > 0)
             {
                 StartCoroutine(DropThrough());
             }
