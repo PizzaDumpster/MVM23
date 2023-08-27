@@ -10,8 +10,8 @@ public class HurtPlayer : MonoBehaviour
     void Start()
     {
         invincableTime = 1f;
-        
-        playerMovement = FindAnyObjectByType<PlayerMovement>();
+
+        playerMovement = PlayerMovement.instance; 
         playerMovement.isBlinking = false; 
     }
 

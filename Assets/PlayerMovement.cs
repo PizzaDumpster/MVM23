@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Animator anim;
-    Rigidbody2D rb;
+    public static PlayerMovement instance; 
+     
+    public Animator anim;
+    public Rigidbody2D rb;
     [SerializeField] public int playerHealth;
     [SerializeField] int maxPlayerHealth = 3;
     [SerializeField] float movementSpeed = 1.0f, startMovementSpeed;
@@ -46,7 +48,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 movement;
     [SerializeField] Joystick joystick;
     [SerializeField] Canvas mobileCanvas;
+    private void Awake()
+    {
 
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -111,18 +127,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Application.isMobilePlatform)
         {
-            if(joystick.Horizontal > 0.2f)
+            if (joystick.Horizontal > 0.2f)
             {
                 movement.x = -1;
-            }else if(joystick.Horizontal < -0.2f)
+            }
+            else if (joystick.Horizontal < -0.2f)
             {
                 movement.x = 1;
             }
             else
             {
-                movement.x = 0; 
+                movement.x = 0;
             }
-            
+
         }
         else
         {

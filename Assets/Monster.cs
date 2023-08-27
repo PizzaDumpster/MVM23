@@ -41,7 +41,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(playerTarget.transform.position, this.transform.position) < 25)
+        if (Vector2.Distance(PlayerMovement.instance.rb.transform.position, this.transform.position) < 25)
         {
             if (fireRateCoolDown > 0)
             {

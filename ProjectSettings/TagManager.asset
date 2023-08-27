@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lights
   - Ladder
+  - GM
   layers:
   - Default
   - TransparentFX

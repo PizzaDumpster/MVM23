@@ -1,9 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DisplayCount : MonoBehaviour
 {
+    public static DisplayCount instance; 
+
     [SerializeField] TMP_Text starCounterDisplay;
     [SerializeField] TMP_Text dashAvailable;
     [SerializeField] Image heartOne;
@@ -11,18 +14,28 @@ public class DisplayCount : MonoBehaviour
     [SerializeField] Image heartThree;
     [SerializeField] Sprite heartFull;
     [SerializeField] Sprite heartEmpty;
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] public bool playerIsDead; 
-
-
-
+    [SerializeField] public bool playerIsDead;
 
     PlayerMovement playerMovement;
+    private bool oneOff;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerIsDead = false; 
+        oneOff = true; 
+        playerIsDead = false;
         playerMovement = FindAnyObjectByType<PlayerMovement>();
         starCounterDisplay.text = "Stars: " + CollectionManager.instance.starCounter.ToString();
         if (playerMovement.unlockedDash)
@@ -39,9 +52,9 @@ public class DisplayCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerMovement.playerHealth < 0)
+        if (playerMovement.playerHealth < 0)
         {
-            playerMovement.playerHealth = 0; 
+            playerMovement.playerHealth = 0;
         }
 
         if (starCounterDisplay.text != CollectionManager.instance.starCounter.ToString())
@@ -70,11 +83,10 @@ public class DisplayCount : MonoBehaviour
         {
             case 0:
                 //player dead
-                playerIsDead = true; 
+                playerIsDead = true;
                 heartOne.sprite = heartEmpty;
                 heartTwo.sprite = heartEmpty;
                 heartThree.sprite = heartEmpty;
-                playerMovement.gameObject.transform.position = spawnPoint.position;
                 break;
             case 1:
                 heartOne.sprite = heartFull;

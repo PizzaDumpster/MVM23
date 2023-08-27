@@ -1,3 +1,4 @@
+using PoopInMyPants;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,11 +25,20 @@ public class DeathScreen : MonoBehaviour
         if (myDisplay.playerIsDead)
         {
             myCanvas.enabled = true;
+            PlayerMovement.instance.enabled = false;
+        }
+        else
+        {
+            myCanvas.enabled = false; 
         }
     }
 
     public void ResetScene()
     {
+        PlayerMovement.instance.enabled = true; 
+        PlayerMovement.instance.transform.position = GameManager.instance.lastCheckPointPos; 
+        PlayerMovement.instance.playerHealth = 3;
+        myDisplay.playerIsDead = false;
         SceneManager.LoadScene(0);
     }
 }

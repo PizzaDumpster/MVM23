@@ -15,7 +15,7 @@ public class HeartPickup : MonoBehaviour
         {
             AudioManager.instance.Play("Pickup");
             Popup.instance.PlayPopup("Heart Collected!");
-            GameObject.Destroy(gameObject);
+            Destroy(gameObject);
             if (playerMovement.playerHealth <= 2)
             {
                 playerMovement.playerHealth++;
